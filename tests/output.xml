@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.1 (Python 3.9.7 on win32)" generated="20211129 18:42:25.011" rpa="false" schemaversion="2">
+<suite id="s1" name="TC 003 Put Request" source="C:\projects\automation\robot_apiautomation\tests\TC_003_Put_Request.robot">
+<test id="s1-t1" name="TC_002_Post_Request create new resource">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>AddData</arg>
+<arg>${Base_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20211129 18:42:25.294" level="INFO">Creating Session using : alias=AddData, url=http://thetestingworldapi.com/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20211129 18:42:25.294" endtime="20211129 18:42:25.294"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>id=${StudantID}</arg>
+<arg>first_name=Isaias2</arg>
+<arg>middle_name=Santos2</arg>
+<arg>last_name=Silvas</arg>
+<arg>date_of_birth=14/09/1989</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20211129 18:42:25.295" level="INFO">${body} = {'id': '529417', 'first_name': 'Isaias2', 'middle_name': 'Santos2', 'last_name': 'Silvas', 'date_of_birth': '14/09/1989'}</msg>
+<status status="PASS" starttime="20211129 18:42:25.295" endtime="20211129 18:42:25.295"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20211129 18:42:25.295" level="INFO">${header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20211129 18:42:25.295" endtime="20211129 18:42:25.295"/>
+</kw>
+<kw name="Put Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>AddData</arg>
+<arg>api/studentsDetails/${StudantID}</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>*DEPRECATED* Please use `PUT On Session` instead.</doc>
+<msg timestamp="20211129 18:42:25.296" level="WARN">Keyword 'RequestsLibrary.Put Request' is deprecated. Please use `PUT On Session` instead.</msg>
+<msg timestamp="20211129 18:42:25.951" level="INFO">PUT Request : url=http://thetestingworldapi.com/api/studentsDetails/529417 
+ path_url=/api/studentsDetails/529417 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '121'} 
+ body={"id": "529417", "first_name": "Isaias2", "middle_name": "Santos2", "last_name": "Silvas", "date_of_birth": "14/09/1989"} 
+ </msg>
+<msg timestamp="20211129 18:42:25.951" level="INFO">PUT Response : url=http://thetestingworldapi.com/api/studentsDetails/529417 
+ status=200, reason=OK 
+ headers={'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Content-Type': 'application/json; charset=utf-8', 'Expires': '-1', 'Server': 'Microsoft-IIS/8.5', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'X-Powered-By-Plesk': 'PleskWin', 'Date': 'Mon, 29 Nov 2021 21:42:31 GMT', 'Content-Length': '46'} 
+ body={"status":"true","msg":"update  data success"} 
+ </msg>
+<msg timestamp="20211129 18:42:25.951" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211129 18:42:25.296" endtime="20211129 18:42:25.951"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20211129 18:42:25.953" level="INFO">${code} = 200</msg>
+<status status="PASS" starttime="20211129 18:42:25.952" endtime="20211129 18:42:25.954"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20211129 18:42:25.954" endtime="20211129 18:42:25.955"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20211129 18:42:25.956" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20211129 18:42:25.955" endtime="20211129 18:42:25.957"/>
+</kw>
+<status status="PASS" starttime="20211129 18:42:25.294" endtime="20211129 18:42:25.957"/>
+</test>
+<status status="PASS" starttime="20211129 18:42:25.013" endtime="20211129 18:42:25.959"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="TC 003 Put Request">TC 003 Put Request</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20211129 18:42:25.296" level="WARN">Keyword 'RequestsLibrary.Put Request' is deprecated. Please use `PUT On Session` instead.</msg>
+</errors>
+</robot>
